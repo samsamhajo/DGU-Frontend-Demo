@@ -3,25 +3,37 @@ import { useLocation, Link } from 'react-router-dom';
 
 const SignUpComplete = () => {
     const location = useLocation();
-    const userData = location.state.userData;
+    const { userData } = location.state || {};
 
     return (
-        <div className="flex justify-center items-center h-screen bg-white text-black">
-            <div className="w-80 p-4 border rounded shadow text-center">
-                <h1 className="text-2xl font-bold mb-4 text-blue-500">회원가입 신청완료</h1>
-                <p>아이디: {userData.username}</p>
-                <p>직책: {userData.position}</p>
-                <p>부서: {userData.department}</p>
-                <p>학과: {userData.major}</p>
-                <p>교번: {userData.employeeId}</p>
-                <p>이메일: {userData.email}</p>
-                <p className="mt-2 mb-4">회원가입 신청이 완료되었습니다.</p>
-                <Link
-                    to="/"
-                    className="bg-blue-500 text-white py-2 px-6 rounded-lg font-bold hover:bg-blue-600 transition duration-200 mt-4"
-                >
-                    돌아가기
-                </Link>
+        <div className="bg-white h-screen">
+            <header className="bg-blue-500 py-4">
+
+            </header>
+            <div className="container mx-auto p-4 flex flex-col items-center">
+                {userData && (
+                    <div className="text-center mb-4">
+                        <p><strong>아이디:</strong> {userData.userid}</p>
+                        <p><strong>직책:</strong> {userData.position}</p>
+                        <p><strong>부서:</strong> {userData.department}</p>
+                        <p><strong>학과:</strong> {userData.major}</p>
+                        <p><strong>교번:</strong> {userData.employeeId}</p>
+                        <p><strong>이름:</strong> {userData.username}</p>
+                        <p><strong>이메일:</strong> {userData.email}</p>
+                    </div>
+                )}
+                {/* 분리 줄 추가 */}
+                <hr className="w-1/2 border-b my-4" />
+                <p className="text-4xl font-bold">회원가입 신청 완료</p>
+                <br />
+                <br />
+                <p className="text-xl ">회원가입 신청이 완료되었습니다.</p>
+                <p className="text-xl ">가입 승인은 신청일로부터 최대 5일 정도 소요됩니다.</p>
+                <br />
+                <Link to="/" className="bg-blue-500 text-white py-3 px-6 rounded-lg font-bold hover:bg-blue-600 transition duration-200">
+    메인페이지로 돌아가기
+</Link>
+
             </div>
         </div>
     );
